@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www:thymeleaf.org">
+<head>
+
+	<title>Shopping-Mall-后台管理-首页</title>
+	<link rel="shortcut icon" href="/static/favicon.ico"  type="image/x-icon" />
+	<link href="/static/asserts/css/nav.css" th:href="@{/static/asserts/css/nav.css}" rel="stylesheet">
+	<link href="/static/asserts/css/bootstrap.min.css" th:href="@{/static/asserts/css/bootstrap.min.css}" rel="stylesheet">
+	<link href="/static/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/static/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Abril+Fatface">
+	<link rel="stylesheet" href="/static/asserts/css/theme.css" th:href="@{/static/asserts/css/theme.css}">
+	<link rel="stylesheet" href="/static/asserts/css/tailwind.min.css"th:href="@{/static/asserts/css/tailwind.min.css}">
+	<link rel="stylesheet" href="/static/asserts/css/normalize.min.css"th:href="@{/static/asserts/css/normalize.min.css}">
+
+	<script type="text/javascript" src="/static/asserts/js/jquery-3.2.1.slim.min.js"  th:src="@{/static/asserts/js/jquery-3.2.1.slim.min.js}" ></script>
+	<script type="text/javascript" src="/static/asserts/js/jquery-1.10.2.js"  th:src="@{/static/asserts/js/jquery-1.10.2.js}" ></script>
+	<script type="text/javascript" src="/static/asserts/js/jquery.min.js"  th:src="@{/static/asserts/js/jquery.min.js}" ></script>
+	<script type="text/javascript" src="/static/asserts/js/popper.min.js"  th:src="@{/static/asserts/js/popper.min.js}" ></script>
+	<script type="text/javascript" src="/static/asserts/js/bootstrap.min.js" th:src="@{/static/asserts/js/bootstrap.min.js}" ></script>
+	<script type="text/javascript" src="/static/asserts/js/feather.min.js" th:src="@{/static/asserts/js/feather.min.js}" ></script>
+	<script type="text/javascript" src="/static/asserts/js/nav.js"  th:src="@{/static/asserts/js/nav.js}" ></script>
+	<script type="text/javascript" src="/static/asserts/js/Chart.min.js" th:src="@{/static/asserts/js/Chart.min.js}" ></script>
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<style type="text/css">
+	a:hover{
+		text-decoration: none;
+	}
+	body{
+		overflow: hidden;
+		-webkit-user-select:none;
+		-moz-user-select:none;
+		-ms-user-select:none;
+		user-select:none;
+		background-color: #ffffff;
+	}
+	.right-side {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		margin-left: -160px;
+		background-color: #ffffff;
+	}
+
+	iframe {
+		flex-grow: 1;
+		height: 100%;
+		width: 100%;
+		border: none;
+	}
+	.my_box{
+		width:51px;
+		height:51px;
+		overflow: hidden;
+		border-radius: 28px;
+		border:1px solid #ccc;
+		position:fixed;
+		right:20px;
+		top:1px;
+		margin:auto;
+		transition: .6s;
+		cursor: pointer;
+	}
+	.my_box:hover{
+		animation:my_box 0.5s forwards;
+		transition: .5s;
+	}
+	@keyframes my_box{
+		form{
+			transform: rotate(0deg);
+		}
+		to{
+			transform: rotate(360deg);
+		}
+	}
+	.my_box img{
+		width:100%;
+	}
+	.xiantiao{
+		display: block;
+		width:86%;
+		height:1px;
+		border-bottom: 1px solid #ccc;
+		margin:0 auto;
+	}
+
+	.pic_box{
+		width:609px;
+		min-height:673px;
+		height:auto;
+		border-radius:8px;
+		background: #fff;
+		border:1px solid #ccc;
+		position: fixed;
+		top:-1000px;
+		left:0;
+		right:0;
+		margin:0 auto;
+	}
+	.header{
+		height:45px;
+		text-align: center;
+	}
+	.close{
+		color:#000;
+		font-size: 21px;
+		line-height: 1;
+		text-shadow: 0 1px 0 #fff;
+		opacity: .2;
+		position:absolute;
+		right:8px;
+		top:2px;
+		cursor: pointer;
+	}
+	.pic_box ul{
+		padding: 0;
+		width:96%;
+		height:511px;
+		margin:10px auto;
+	}
+	.pic_box ul li{
+		display: block;
+		list-style: none;
+		width:61px;
+		height:61px;
+		float: left;
+		border-radius: 15%;
+		border:1px solid #ccc;
+		margin:5px 5px;
+		transition: .6s;
+		cursor: pointer;
+		overflow: hidden;
+	}
+	.pic_box ul li:hover{
+		transform: scale(1.15);
+		transition: .5s;
+	}
+	.pic_box ul li img{
+		width:100%;
+	}
+	.bt_box{
+		width: 100%;
+		text-align: center;
+		font-size: 14px;
+		margin-top: 30px;
+	}
+	.bt_box .gb{
+		display:inline-block;
+		width:120px;
+		height:35px;
+		border-radius: 8px;
+		background:#f3f3f3;
+		color:#444;
+		line-height: 35px;
+	}
+	.bt_box .queren{
+		display: inline-block;
+		width:120px;
+		height:35px;
+		border-radius: 8px;
+		background:#4B8BF5;
+		color:#fff;
+		line-height: 35px;
+	}
+
+</style>
+</head>
+<body>
+	<!-- 引入顶部栏 -->
+	<div th:replace="~{commons/bar::topbar}"></div>
+	<div class="container-fluid" style="display: inline-block">
+		<div class="row" >
+			<!-- 引入侧边栏 -->
+			<div th:replace="commons/bar::#menu" ></div>
+			<div class="right-side">
+				<iframe name="pageBox" src="/logo.html" th:src="@{/logo.html}" id="iframe">
+				</iframe>
+			</div>
+			<!-- 主题设置start -->
+			<div id="theme-menu" class="absolute  p-3 right-0 text-grey" style="display: none; width:280px; height: 100%;background-image: linear-gradient(to right, #ffffff 10%, #000000 100%); opacity: .95">
+
+				<div class="flex items-center" style="margin-top: 60px;">
+					<div class="flex items-center" style="font-weight: bold">
+						<div class="flex items-center mr-3">
+							<label class="text-sm mr-2">文字颜色：</label>
+							<input class="cursor-pointer h-10 outline-none rounded-full w-10 input-color-picker"  id="current-bg">
+						</div>
+					</div>
+				</div>
+				<h3 class="font-bold text-sm mr-3" style="margin-top: 60px;">文字主题</h3>
+				<div class="flex items-center" style="margin-top: 20px;">
+					<div class="flex">
+						<span class="cursor-pointer w-10 h-10 inline-block rounded-full mr-4" data-bg-color="#b84130"
+							  data-color="#ffffff" style="background-color: #b84130" id="b84130" title="石榴红">&nbsp;</span>
+						<span class="cursor-pointer w-10 h-10 inline-block rounded-full mr-4" data-bg-color="#363d98"
+							  data-color="#ffffff" style="background-color: #363d98" id="363d98" title="宝石蓝">&nbsp;</span>
+						<span class="cursor-pointer w-10 h-10 inline-block rounded-full" data-bg-color="#FFD5CD"
+							  data-color="#333333" style="background-color: #FFD5CD" id="FFD5CD" title="浅桃红">&nbsp;</span>
+					</div>
+				</div>
+
+				<div class="flex items-center" style="margin-top: 30px;">
+					<div class="flex">
+						<span class="cursor-pointer w-10 h-10 inline-block rounded-full mr-4" data-bg-color="#b84130"
+								  data-color="#ffffff" style="background-color: #000000" id="000000" title="荣耀黑">&nbsp;</span>
+						<span class="cursor-pointer w-10 h-10 inline-block rounded-full mr-4" data-bg-color="#363d98"
+							  data-color="#ffffff" style="background-color: #ffffff" id="ffffff" title="象牙白">&nbsp;</span>
+						<span class="cursor-pointer w-10 h-10 inline-block rounded-full" data-bg-color="#FFD5CD"
+							  data-color="#333333" style="background-color: #d39e00" id="d39e00" title="土豪金">&nbsp;</span>
+					</div>
+				</div>
+
+				<div class="flex items-center" style="margin-top: 30px;">
+					<div class="flex">
+							<span class="cursor-pointer w-10 h-10 inline-block rounded-full mr-4" data-bg-color="#b84130"
+								  data-color="#ffffff" style="background-color: #28a745" id="28a745" title="草原绿">&nbsp;</span>
+						<span class="cursor-pointer w-10 h-10 inline-block rounded-full mr-4" data-bg-color="#363d98"
+							  data-color="#ffffff" style="background-color: #f687b3" id="f687b3" title="芭比粉">&nbsp;</span>
+						<span class="cursor-pointer w-10 h-10 inline-block rounded-full" data-bg-color="#FFD5CD"
+							  data-color="#333333" style="background-color: #cfccc5" id="cfccc5" title="深空灰">&nbsp;</span>
+					</div>
+				</div>
+				<div class="flex items-center" style="margin-top: 30px;">
+					<button id="save" class="btn btn-success" style="margin-top: 10px; margin-left: 10px;">保存</button>
+					<button id="263238" class="btn btn-info" style="margin-top: 10px; margin-left: 30px;">恢复默认</button>
+				</div>
+				<h3 class="font-bold text-sm mr-3" style="margin-top: 60px;">首页动画</h3>
+				<button id="logo1" class="btn btn-warning" style="margin-top: 10px; margin-left: 30px;">下雨</button>
+				<button id="logo2" class="btn btn-warning" style="margin-top: 10px; margin-left: 30px;">粘液</button>
+				<button id="logo" class="btn btn-warning" style="margin-top: 10px; margin-left: 30px;">树叶</button>
+			</div>
+			<script>
+
+				$("#logo1").click(function () {
+					$("#iframe").attr("src","/logo1.html");
+				});
+				$("#logo2").click(function () {
+					$("#iframe").attr("src","/logo2.html");
+				});
+				$("#logo").click(function () {
+					$("#iframe").attr("src","/logo.html");
+				});
+
+
+				$("#theme").click(function (e) {
+					e.stopPropagation();
+					$("#theme-menu").fadeIn();
+				});
+				$("#theme-menu").click(function (e) {
+					e.stopPropagation();
+				});
+				$(document).click(function(){
+					$("#theme-menu").fadeOut();
+				});
+				//恢复默认主题
+				theme('263238','#263238');
+
+				//退出
+				$("#save").click(function(){
+					$("#theme-menu").fadeOut();
+				});
+				//点击颜色
+				theme('b84130','#b84130');
+				theme('363d98','#363d98');
+				theme('FFD5CD','#FFD5CD');
+				theme('000000','#000000');
+				theme('ffffff','#ffffff');
+				theme('d39e00','#d39e00');
+				theme('28a745','#28a745');
+				theme('f687b3','#f687b3');
+				theme('cfccc5','#cfccc5');
+				function theme(name,color){
+					$('#'+name).click(function(){
+						$(".bar-span").css('color', color);
+						$(".bar-a").css('color', color);
+						$("#title").css('color', color);
+						$("#current-bg").css('background-color',color);
+						themeColor(color);
+						window.name = color;
+					});
+				}
+
+
+
+				function themeColor(name) {
+					if(name == '#b84130'){//红色
+						$("#bg-top-bar").css('background-color','#F2F1D7');
+						$("#bg-menu").css('background-color','#F2F1D7');
+						$("#theme-menu").css('background-image','linear-gradient(to right, #ffffff 10%, #F2F1D7 100%)');
+					}
+					if(name == '#363d98'){//蓝色
+						$("#bg-top-bar").css('background-color','#E8D098');
+						$("#bg-menu").css('background-color','#E8D098');
+						$("#theme-menu").css('background-image','linear-gradient(to right, #ffffff 10%, #E8D098 100%)');
+
+					}
+					if(name == '#FFD5CD'){//桃红色
+						$("#bg-top-bar").css('background-color','#002FA7');
+						$("#bg-menu").css('background-color','#002FA7');
+						$("#theme-menu").css('background-image','linear-gradient(to right, #ffffff 10%, #002FA7 100%)');
+
+					}
+					if(name == '#000000'){//黑色
+						$("#bg-top-bar").css('background-color','#d39e00');
+						$("#bg-menu").css('background-color','#d39e00');
+						$("#theme-menu").css('background-image','linear-gradient(to right, #ffffff 10%, #d39e00 100%)');
+
+					}
+					if(name == '#ffffff'){//白色
+						$("#bg-top-bar").css('background-color','#A9A9A9');
+						$("#bg-menu").css('background-color','#A9A9A9');
+						$("#theme-menu").css('background-image','linear-gradient(to right, #ffffff 10%, #A9A9A9 100%)');
+
+					}
+					if(name == '#d39e00'){//黄色
+						$("#bg-top-bar").css('background-color','#000');
+						$("#bg-menu").css('background-color','#000');
+						$("#theme-menu").css('background-image','linear-gradient(to right, #ffffff 10%, #000 100%)');
+
+					}
+					if(name == '#28a745'){//绿色
+						$("#bg-top-bar").css('background-color','#fff');
+						$("#bg-menu").css('background-color','#fff');
+						$("#theme-menu").css('background-image','linear-gradient(to right, #fff 10%, #fff 100%)');
+
+					}
+					if(name == '#f687b3'){//粉色
+						$("#bg-top-bar").css('background-color','#CCE8CF');
+						$("#bg-menu").css('background-color','#CCE8CF');
+						$("#theme-menu").css('background-image','linear-gradient(to right, #fff 0%, #CCE8CF 100%)');
+
+					}
+					if(name == '#cfccc5'){//灰色
+						$("#bg-top-bar").css('background-color','#FF178C');
+						$("#bg-menu").css('background-color','#FF178C');
+						$("#theme-menu").css('background-image','linear-gradient(to right, #fff 10%, #FF178C 100%)');
+
+					}
+					if(name == '#263238'){
+						$("#bg-top-bar").css('background-color','#263238');
+						$("#bg-menu").css('background-color','#343a40');
+						$(".bar-span").css('color','#abb1b7');
+						$("#title").css('color','#fff');
+						$(".bar-a").css('color','#abb1b7');
+						$("#theme-menu").css('background-image','linear-gradient(to right, #fff 10%, #000 100%)');
+
+					}
+
+				}
+
+				(function (){
+					if(!window.name){
+						//第一次开这个窗口！
+					}else{
+						$(".bar-span").css('color', window.name);
+						$(".bar-a").css('color', window.name);
+						$("#title").css('color', window.name);
+						$("#current-bg").css('background-color',window.name);
+						themeColor(window.name);
+					}
+				})();
+
+			</script>
+			<!-- 主题设置 end====================================================== -->
+
+
+			<!-- 头像设置 start=================================================== -->
+			<script type="text/javascript">
+				$(".close,.gb").click(function(){
+					$(".pic_box").animate({
+						'top':'-1000px'
+					},500);
+				}),
+						$(".my_box").click(function(){
+							$(".pic_box").animate({
+								'top':'15px',
+							},300);
+						}),
+						$(".queren").click(function(){
+							var src = $(".jide").val();
+
+							if(src != ""){
+								$(".my_pic").attr('src',src);
+								$(".pic_box").animate({
+									'top':'-1000px'
+								},500);
+							}else{
+								return false;
+							}
+
+						});
+				var $box = document.getElementById('pic_box');
+				var $li = $box.getElementsByTagName('li');
+				var index = 0;
+				for(var i=0;i<$li.length;i++){
+					$li[i].index=i;
+					$li[i].onclick=function(){
+						$li[index].style.borderRadius="15%";
+						this.style.borderRadius="50%";
+						index = this.index;
+					}
+				}
+				$(".pic_box li img").click(function(){
+					var src=$(this).attr("src");
+					$(".jide").val(src);
+				})
+			</script>
+			<!-- 头像设置 end=================================================== -->
+		</div>
+	</div>
+
+</body>
+</html>
+
+

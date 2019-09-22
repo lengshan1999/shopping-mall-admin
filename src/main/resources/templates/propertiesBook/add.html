@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www:thymeleaf.org">
+
+	<head>
+		<title>Shopping-Mall-后台管理-添加书籍类型属性</title>
+		<link href="/static/asserts/css/bootstrap.min.css" th:href="@{/static/asserts/css/bootstrap.min.css}" rel="stylesheet">
+
+
+		<script type="text/javascript" src="/static/asserts/js/jquery-1.10.2.js"  th:src="@{/static/asserts/js/jquery-1.10.2.js}" ></script>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<form  th:action="@{/bookProperties/saveBook}" method="post">
+					 <div class="form-group">
+					    <label class="col-sm-2 control-label">书籍类属性名称</label>
+					    <div class="col-sm-10">
+					      <input type="text"  name="bookPropertiesName"  class="form-control"  placeholder="bookPropertiesName"  >
+					      <span class="help-block"></span>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">可选值</label>
+					    <div class="col-sm-10">
+					      <input type="text"   name="optionalValue"  class="form-control"  placeholder="optionalValue">
+					      <span class="help-block"></span>
+					    </div>
+					  </div>
+						<div class="form-group">
+							<div class="col-sm-10">
+								<button type="submit" class="btn btn-primary form-control">保存</button>
+								<span class="help-block"></span>
+							</div>
+						</div>
+					</form>
+				</main>
+			</div>
+		</div>
+	</body>
+
+</html>

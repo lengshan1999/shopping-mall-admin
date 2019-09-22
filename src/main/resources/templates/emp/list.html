@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www:thymeleaf.org">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>shopping-mall-admin-测试</title>
+		<link href="/static/asserts/css/bootstrap.min.css" th:href="@{/static/asserts/css/bootstrap.min.css}" rel="stylesheet">
+		<link href="/static/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/static/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+
+		<script type="text/javascript" src="/static/asserts/js/jquery-1.10.2.js" th:src="@{/static/asserts/js/jquery-1.10.2.js}"></script>
+
+		<style type="text/css">
+			a:hover{
+				text-decoration: none;
+			}
+			body{
+				overflow: hidden;
+			}
+
+			@-webkit-keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			@keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+
+			.tcdPageCode{
+				padding: 15px 20px;
+				text-align: left;
+				color: #ccc;
+				text-align:center;
+			}
+			.tcdPageCode a{
+				display: inline-block;
+				color: #428bca;
+				display: inline-block;
+				height: 25px;
+				line-height: 25px;
+				padding: 0 10px;
+				border: 1px solid #ddd;
+				margin: 0 2px;
+				border-radius: 4px;
+				vertical-align: middle;
+			}
+			.tcdPageCode a:hover{
+				text-decoration: none;
+				border: 1px solid #428bca;
+			}
+			.tcdPageCode span.current{
+				display: inline-block;
+				height: 25px;
+				line-height: 25px;
+				padding: 0 10px;
+				margin: 0 2px;
+				color: #fff;
+				background-color: #428bca;
+				border: 1px solid #428bca;
+				border-radius: 4px;
+				vertical-align: middle;
+			}
+			.tcdPageCode span.disabled{
+				display: inline-block;
+				height: 25px;
+				line-height: 25px;
+				padding: 0 10px;
+				margin: 0 2px;
+				color: #bfbfbf;
+				background: #f2f2f2;
+				border: 1px solid #bfbfbf;
+				border-radius: 4px;
+				vertical-align: middle;
+			}
+			.msg{
+				position: absolute;
+				top: 90px;
+				left: 400px;
+				width: 300px;
+				height: 40px;
+				background-color: #34ce57;
+				opacity: .9;
+				text-align: center;
+				line-height: 40px;
+				float: left;
+				font-family:"微软雅黑","黑体","宋体";
+				font-size:16px;
+				font-weight: bold;
+				color: #ffffff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" >
+					<div class="table-responsive">
+						<table class="table table-hover" >
+							<div class="msg"  id="msg">
+								<i class="fa fa-check" aria-hidden="true"></i>
+								<span th:text="${msg}" ></span>
+							</div>
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>lastName</th>
+									<th>gender</th>
+									<th>email</th>
+									<th>department</th>
+<!--									<th>birth</th>-->
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="emp:${emps}">
+									<td th:text="${emp.id}"></td>
+									<td th:text="${emp.lastName}"></td>
+									<td th:text="${emp.gender}==0?'女' : '男' "></td>
+									<td th:text="${emp.email}"></td>
+									<td th:text="${emp.department.departmentName}"></td>
+<!--									<td th:text="${#dates.format(emp.birth,'yyyy-MM-dd HH:mm')}"></td>-->
+									<td>
+										<a class="btn btn-ss btn-info" th:href="@{/emp/}+${emp.id}">
+											<i class="fa fa-paint-brush" aria-hidden="true"></i>  编辑
+										</a>
+										<a  class="btn btn-ss btn-danger "  th:href="@{/empDelete/}+${emp.id}">
+											<i class="fa fa-trash-o" aria-hidden="true"></i>删除
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="tcdPageCode">
+							<a href="javascript:;" class="prevPage">上一页</a>
+							<a href="javascript:;" class="tcdNumber">1</a>
+							<a href="javascript:;" class="tcdNumber">2</a>
+							<a href="javascript:;" class="tcdNumber">3</a>
+							<a href="javascript:;" class="tcdNumber">4</a>
+							<span>...</span>
+							<a href="javascript:;" class="tcdNumber">100</a>
+							<a href="javascript:;" class="nextPage">下一页</a>
+						</div>
+						<script>
+							$(".tcdPageCode").createPage({
+								pageCount:100,
+								current:1,
+								backFn:function(p){
+									//console.log(p);
+								}
+							});
+
+							setTimeout(function () {
+								$("#msg").fadeOut();
+							}, 700);
+
+						</script>
+
+					</div>
+				</main>
+			</div>
+		</div>
+	</body>
+
+</html>

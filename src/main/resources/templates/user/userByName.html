@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www:thymeleaf.org">
+
+<head>
+    <title>Shopping-Mall-后台管理-商品列表</title>
+    <link href="/static/asserts/css/bootstrap.min.css" th:href="@{/static/asserts/css/bootstrap.min.css}" rel="stylesheet">
+    <link href="/static/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/static/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+
+    <script type="text/javascript" src="/static/asserts/js/jquery-1.10.2.js" th:src="@{/static/asserts/js/jquery-1.10.2.js}"></script>
+
+    <style type="text/css">
+        .tcdPageCode{
+            padding: 15px 20px;
+            text-align: center;
+            color: #ccc;
+            text-align:center;
+            margin-left:100px;
+            display: inline-block;
+        }
+        .tcdPageCode a{
+            display: inline-block;
+            color: #428bca;
+            display: inline-block;
+            height: 25px;
+            line-height: 25px;
+            padding: 0 10px;
+            border: 1px solid #ddd;
+            margin: 0 2px;
+            border-radius: 4px;
+            vertical-align: middle;
+        }
+        .tcdPageCode a:hover{
+            text-decoration: none;
+            border: 1px solid #428bca;
+        }
+        .center{
+            line-height: 90px;
+        }
+        .msg ,.msgFiled{
+            position: absolute;
+            top: 90px;
+            left: 400px;
+            width: 300px;
+            height: 40px;
+            background-color: #34ce57;
+            opacity: .9;
+            text-align: center;
+            line-height: 40px;
+            float: left;
+            font-family:"微软雅黑","黑体","宋体";
+            font-size:16px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .msgFiled{
+            background-color: #dc3545;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="table-responsive">
+
+                <div class=" col-sm-9" style="color: #abb1b7;margin-left: -15px; ">
+                    <form action="/users/getUserByName" method="get" >
+                        <input class="form-control col-sm-12 form-control-dark w-100" type="text" placeholder="请输入用户名" name="userName" style="margin-bottom: 20px;">
+                    </form>
+                </div>
+
+                <div class="msg"  id="msg" th:if="${not #strings.isEmpty(msg)}">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    <span th:text="${msg}" ></span>
+                </div>
+                <div class="msgFiled"  id="msgFiled" th:if="${not #strings.isEmpty(msgFiled)}">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <span th:text="${msgFiled}" ></span>
+                </div>
+                <script>
+                    setTimeout(function () {
+                        $(".msg").fadeOut();
+                        $(".msgFiled").fadeOut();
+                    }, 700);
+                </script>
+                <table class="table  table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>用户名称</th>
+                        <th>联系电话</th>
+                        <th>用户权限</th>
+                        <th>用户邮箱</th>
+                        <th>创建日期</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="u:${user}">
+                        <td th:text="${u.id}"></td>
+                        <td th:text="${u.userName}"></td>
+                        <td th:text="${u.phone}"></td>
+                        <td th:text="${u.roleName}"></td>
+                        <td th:text="${u.email}"></td>
+                        <td th:text="${u.createTime}"></td>
+                        <td>
+                            <a class="btn btn-ss btn-info" th:href="@{/users/lookUser(id=${u.id})}">
+                                编辑
+                            </a>
+                            <a  class="btn btn-ss btn-danger "  th:href="@{/users/userDelete(id=${u.id})}">
+                                删除
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <div style="text-align: center">
+                        <td><span th:text="${msgFiled}"></span></td>
+                    </div>
+                    <div style="margin-left: 700px;">
+                        <div class="tcdPageCode">
+                            <a href="javascript:;"   class="tcdNumber" th:href="@{/users/getAllUsers?current=1&size=8}">返回首页</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www:thymeleaf.org">
+
+	<head>
+		<title>Shopping-Mall-后台管理-编辑用户</title>
+		<link href="/static/asserts/css/nav.css" th:href="@{/static/asserts/css/nav.css}" rel="stylesheet">
+		<link href="/static/asserts/css/bootstrap.min.css" th:href="@{/static/asserts/css/bootstrap.min.css}" rel="stylesheet">
+		<link href="/static/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/static/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+
+
+		<script type="text/javascript" src="/static/asserts/js/jquery-3.2.1.slim.min.js"  th:src="@{/static/asserts/js/jquery-3.2.1.slim.min.js}" ></script>
+		<script type="text/javascript" src="/static/asserts/js/jquery-1.10.2.js"  th:src="@{/static/asserts/js/jquery-1.10.2.js}" ></script>
+		<script type="text/javascript" src="/static/asserts/js/jquery.min.js"  th:src="@{/static/asserts/js/jquery.min.js}" ></script>
+		<script type="text/javascript" src="/static/asserts/js/popper.min.js"  th:src="@{/static/asserts/js/popper.min.js}" ></script>
+		<script type="text/javascript" src="/static/asserts/js/bootstrap.min.js" th:src="@{/static/asserts/js/bootstrap.min.js}" ></script>
+		<script type="text/javascript" src="/static/asserts/js/feather.min.js" th:src="@{/static/asserts/js/feather.min.js}" ></script>
+		<script type="text/javascript" src="/static/asserts/js/nav.js"  th:src="@{/static/asserts/js/nav.js}" ></script>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<form  th:action="@{/users/updateUser}" method="post">
+					<input name="id" th:value="${user.id}" type="hidden">
+					 <div class="form-group">
+					    <label class="col-sm-2 control-label">用户名称</label>
+					    <div class="col-sm-10">
+					      <input type="text" th:value="${user.userName}" name="userName"  class="form-control" id="empName_add_input" placeholder="userName"  >
+					      <span class="help-block"></span>
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">用户邮箱</label>
+					    <div class="col-sm-10">
+					      <input type="text"  th:value="${user.email}"  name="email"  class="form-control" id="email_add_input" placeholder="email@hbsi.com">
+					      <span class="help-block"></span>
+					    </div>
+					  </div>
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label">角色名称</label>
+						<div class="col-sm-10">
+							<select class="form-control"  name="roleName">
+								<option th:text="${user.roleName}"></option>
+								<option th:text="${user.roleName}eq'管理员'?'普通用户':'管理员'"></option>
+							</select>
+						</div>
+					</div>
+					  
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">联系电话</label>
+					    <div class="col-sm-10">
+							<input type="text"  th:value="${user.phone}"  name="phone"  class="form-control"  placeholder="13122233445">
+							<span class="help-block"></span>
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">添加日期</label>
+					    <div class="col-sm-10">
+					      <input type="text"  th:value="${user.createTime}"  name="createTime"  class="form-control" id="birth_add_input" placeholder="1998-09-24">
+					      <span class="help-block"></span>
+					    </div>
+					  </div>
+						<div class="form-group">
+							<div class="col-sm-10">
+								<button type="submit" class="btn btn-primary form-control">确定修改</button>
+								<span class="help-block"></span>
+							</div>
+						</div>
+					</form>
+				</main>
+			</div>
+		</div>
+	</body>
+
+</html>

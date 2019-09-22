@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www:thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>shopping-mall-admin-密码设置</title>
+    <link href="/static/asserts/css/bootstrap.min.css" th:href="@{/static/asserts/css/bootstrap.min.css}" rel="stylesheet">
+    <script src="/static/asserts/js/jquery.min.js"></script>
+    <style type="text/css">
+        .msg ,.msgFiled{
+            position: absolute;
+            top: 90px;
+            left: 400px;
+            width: 300px;
+            height: 40px;
+            background-color: #34ce57;
+            opacity: .9;
+            text-align: center;
+            line-height: 40px;
+            float: left;
+            font-family:"微软雅黑","黑体","宋体";
+            font-size:16px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .msgFiled{
+            background-color: #dc3545;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+                <div class="msg"  id="msg" th:if="${not #strings.isEmpty(msg)}">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    <span th:text="${msg}" ></span>
+                </div>
+                <div class="msgFiled"  id="msgFiled" th:if="${not #strings.isEmpty(msgFiled)}">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <span th:text="${msgFiled}" ></span>
+                </div>
+                <script>
+                    setTimeout(function () {
+                        $(".msg").fadeOut();
+                        $(".msgFiled").fadeOut();
+                    }, 700);
+                </script>
+
+                <form   th:action="@{/admin/updatePassword}" method="post"  autocomplete="off">
+                    <input name="id"  type="hidden" th:value="${session.id}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">旧密码</label>
+                        <div class="col-sm-10">
+                            <input type="password"  name="oldPassword"  required="required" class="form-control" id="empName_add_input" placeholder="原密码"  >
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">新密码</label>
+                        <div class="col-sm-10">
+                            <input type="password"  id="passwordFirst"  name="newPassword"  class="form-control"  placeholder="请输入新密码">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">确认密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" id="passwordSecond" required="required"  class="form-control"  placeholder="保持两次输入一致">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-10" id="checkPassword" style="display: none;">
+                        <div class=" alert alert-danger" >
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only">Error:</span>
+                            两次密码输入不一致!
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <button id="updPassword" type="submit" class="btn btn-primary form-control ">确定修改</button>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                </form>
+                <script>
+                    $("#passwordSecond").change(function () {
+                        checkPassword();
+                    });
+                    $("#passwordFirst").change(function () {
+                        checkPassword();
+                    });
+                    function checkPassword() {
+                        //新密码
+                        var newPassword =  $("#passwordFirst").val();
+                        //确认密码
+                        var rePassword = $("#passwordSecond").val();
+                        if(newPassword != rePassword){
+                            $("#checkPassword").css("display","block");
+                            $("#updPassword").prop('disabled', true);
+                        }else {
+                            $("#checkPassword").css("display","none");
+                            $("#updPassword").removeAttr("disabled");
+                        }
+                    }
+
+                </script>
+            </main>
+        </div>
+    </div>
+
+
+</body>
+</html>

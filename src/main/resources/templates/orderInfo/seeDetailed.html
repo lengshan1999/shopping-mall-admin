@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www:thymeleaf.org">
+
+	<head>
+		<title>Shopping-Mall-后台管理-查看订单详情</title>
+		<link href="/static/asserts/css/nav.css" th:href="@{/static/asserts/css/nav.css}" rel="stylesheet">
+		<link href="/static/asserts/css/bootstrap.min.css" th:href="@{/static/asserts/css/bootstrap.min.css}" rel="stylesheet">
+		<link href="/static/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/static/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+
+		<style>
+			body,html{
+				width: 100%;
+				height: 1100px;
+
+			}
+			::-webkit-scrollbar{
+				display:none;
+			}
+			body{
+				background-color: #ffffff;
+				-webkit-user-select:none;
+				-moz-user-select:none;
+				-ms-user-select:none;
+				user-select:none;
+			}
+			.address{
+				width: 340px;
+				height: 80px;
+				border: 1px solid #e2e8f0;
+			}
+			.address:hover {
+				background-color: #f6f6f6;
+			}
+			.box{
+				display: inline-block;
+				width:180px;
+				height: 50px;
+				border: 1px solid red;
+				text-align: center;
+				margin-left: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<h4 style=" margin-top: 30px;">收货地址信息</h4>
+					<hr/>
+					<div class="address">
+						<ul>
+							<li>
+								<span>收货人:[[${address.userName}]]</span>
+							</li>
+							<li>
+								<span>联系电话:[[${address.phone}]]</span>
+							</li>
+							<li>
+								<span>收货地址:[[${address.address}]]</span>
+							</li>
+						</ul>
+					</div>
+
+					<h4 style=" margin-top: 30px;">配送方式</h4>
+					<hr/>
+					<div class="box">
+						<span style="line-height: 50px; ">快递配送(免运费)</span>
+					</div>
+					<h4 style=" margin-top: 30px;">支付方式</h4>
+					<hr/>
+					<div  class="box" >
+						<span style="line-height: 50px;">支付宝</span>
+					</div>
+
+					<div class="table-responsive" style="font-size: 12px; margin-top: 30px;">
+						<h4>订单信息</h4>
+						<table class="table  table-hover" >
+							<thead>
+							<tr>
+								<th>商品名称</th>
+								<th>商品单价</th>
+								<th>商品描述</th>
+								<th style="text-align: center">商品数量</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr th:each="goods:${products}">
+								<td ><img th:src="${goods.productImg}" width="65" height="55">[[${goods.productName}]]</td>
+								<td th:text="${goods.productPrice}" ></td>
+								<td th:text="${goods.description}" style="width: 240px"></td>
+								<td th:text="${goods.productCountInOrder}" style="text-align: center"></td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</main>
+			</div>
+		</div>
+	</body>
+
+</html>

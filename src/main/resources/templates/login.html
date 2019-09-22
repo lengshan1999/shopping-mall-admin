@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www:thymeleaf.org">
+<head>
+
+	<title>Shopping-Mall-后台管理-登录</title>
+	<link rel="shortcut icon" href="/static/favicon.ico" th:href="@{/static/favicon.ico}" type="image/x-icon" />
+	<link href="/static/asserts/css/bootstrap.min.css" th:href="@{/static/asserts/css/bootstrap.min.css}"  rel="stylesheet">
+	<link href="/static/asserts/css/signin.css" th:href="@{/static/asserts/css/signin.css}" rel="stylesheet">
+	<script src="/static/asserts/js/jquery.min.js" th:src="@{/static/asserts/js/jquery.min.js}"></script>
+	<script src="/static/asserts/js/jquery.cookie.js" th:src="@{/static/asserts/js/jquery.cookie.js}"></script>
+</head>
+
+<body class="text-center">
+	<script>
+		//不允许在iframe里边打开
+		if (window.parent !== window.self) {
+			window.parent.location.reload();
+		}
+		//加载页面时记录
+		$(document).ready(function(){
+			if($.cookie("password") != ''){
+				$("#password").val($.cookie("password"));
+			}
+			if($.cookie("usernamed") != ''){
+				$("#username").val($.cookie("username"));
+			}
+		})
+	</script>
+	<form class="form-signin"  th:action="@{/admin/login}" method="post" autocomplete="off" onsubmit="return check()">
+		<img class="mb-4" src="/static/asserts/img/logo.png" th:src="@{/static/asserts/img/logo.png}"/>
+		<h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
+		
+		<p style="color:red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+		<label for="username" class="sr-only"  th:text="#{login.username}">User Name</label>
+		<input type="text" name="username" id="username" class="form-control" placeholder="Username/admin" th:placeholder="#{login.username}" required>
+		<label	for="password" class="sr-only" th:text="#{login.password}">Password</label> 
+		<input	type="password" name="password" id="password" class="form-control" 	placeholder="Password/123" th:placeholder="#{login.password}" required>
+		<div class="checkbox mb-3">
+			<label> 
+				<input type="checkbox" value="remember-me" id="remember-me">[[#{login.remember}]]
+			</label>
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.btn}">Sign	in</button>
+		<p class="mt-5 mb-3 text-muted">© 2019-2020</p>
+		<a class="btn btn-sm"  th:href="@{/index.html(l='zh_CN')}" th:text="#{login.chinese}">中文</a>
+		<a class="btn btn-sm" th:href="@{/index.html(l='en_US')}" th:text="#{login.english}">English</a>
+	</form>
+	<script>
+		//记住我功能使用
+		function check(){
+			//写入cookie
+			if ($("#remember-me").prop("checked") == true) {
+				var username = $("#username").val();
+				var password = $("#password").val();
+				//alert(passWord);
+				$.cookie("username", username);
+				$.cookie("password", password,{ expires: 7 }); // 存储一个带7天期限的 cookie 如果{ expires: 7 } 不写则cookie只相当回话效果
+			} else {
+				$.cookie("username", "");
+				$.cookie("password", "");
+			}
+		}
+	</script>
+
+
+</body>
+</html>
