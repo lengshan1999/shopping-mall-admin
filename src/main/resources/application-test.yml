@@ -8,9 +8,9 @@ spring:
     static-path-pattern: /static/**
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://cdb-58w35e0w.cd.tencentcdb.com:10070/shopping?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/shopping?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: lijizhi321
+    password: @password
     druid:
       initial-size: 5
       min-idle: 5
